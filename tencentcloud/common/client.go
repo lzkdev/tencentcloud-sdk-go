@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	tchttp "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/http"
-	"github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/profile"
+	tchttp "tencentcloud-sdk-go/tencentcloud/common/http"
+	"tencentcloud-sdk-go/tencentcloud/common/profile"
 )
 
 type Client struct {

@@ -15,9 +15,9 @@
 package v20180411
 
 import (
-    "encoding/json"
+	"encoding/json"
 
-    tchttp "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/http"
+	tchttp "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/http"
 )
 
 type AddShardConfig struct {
@@ -63,19 +63,19 @@ type CreateDCDBInstanceRequest struct {
 }
 
 func (r *CreateDCDBInstanceRequest) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *CreateDCDBInstanceRequest) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type CreateDCDBInstanceResponse struct {
 	*tchttp.BaseResponse
 	Response *struct {
 		// 长订单号。可以据此调用 DescribeOrders
-	//  查询订单详细信息，或在支付失败时调用用户账号相关接口进行支付。
+		//  查询订单详细信息，或在支付失败时调用用户账号相关接口进行支付。
 		DealName *string `json:"DealName" name:"DealName"`
 		// 订单对应的实例 ID 列表，如果此处没有返回实例 ID，可以通过订单查询接口获取。还可通过实例查询接口查询实例是否创建完成。
 		InstanceIds []*string `json:"InstanceIds" name:"InstanceIds" list`
@@ -85,12 +85,12 @@ type CreateDCDBInstanceResponse struct {
 }
 
 func (r *CreateDCDBInstanceResponse) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *CreateDCDBInstanceResponse) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type DCDBInstanceInfo struct {
@@ -162,12 +162,12 @@ type DescribeDBLogFilesRequest struct {
 }
 
 func (r *DescribeDBLogFilesRequest) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *DescribeDBLogFilesRequest) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type DescribeDBLogFilesResponse struct {
@@ -179,12 +179,12 @@ type DescribeDBLogFilesResponse struct {
 }
 
 func (r *DescribeDBLogFilesResponse) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *DescribeDBLogFilesResponse) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type DescribeDCDBInstancesRequest struct {
@@ -214,12 +214,12 @@ type DescribeDCDBInstancesRequest struct {
 }
 
 func (r *DescribeDCDBInstancesRequest) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *DescribeDCDBInstancesRequest) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type DescribeDCDBInstancesResponse struct {
@@ -235,12 +235,12 @@ type DescribeDCDBInstancesResponse struct {
 }
 
 func (r *DescribeDCDBInstancesResponse) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *DescribeDCDBInstancesResponse) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type DescribeDCDBPriceRequest struct {
@@ -265,12 +265,12 @@ type DescribeDCDBPriceRequest struct {
 }
 
 func (r *DescribeDCDBPriceRequest) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *DescribeDCDBPriceRequest) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type DescribeDCDBPriceResponse struct {
@@ -286,12 +286,12 @@ type DescribeDCDBPriceResponse struct {
 }
 
 func (r *DescribeDCDBPriceResponse) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *DescribeDCDBPriceResponse) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type DescribeDCDBRenewalPriceRequest struct {
@@ -303,12 +303,12 @@ type DescribeDCDBRenewalPriceRequest struct {
 }
 
 func (r *DescribeDCDBRenewalPriceRequest) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *DescribeDCDBRenewalPriceRequest) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type DescribeDCDBRenewalPriceResponse struct {
@@ -324,12 +324,12 @@ type DescribeDCDBRenewalPriceResponse struct {
 }
 
 func (r *DescribeDCDBRenewalPriceResponse) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *DescribeDCDBRenewalPriceResponse) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type DescribeDCDBSaleInfoRequest struct {
@@ -337,12 +337,12 @@ type DescribeDCDBSaleInfoRequest struct {
 }
 
 func (r *DescribeDCDBSaleInfoRequest) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *DescribeDCDBSaleInfoRequest) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type DescribeDCDBSaleInfoResponse struct {
@@ -356,21 +356,21 @@ type DescribeDCDBSaleInfoResponse struct {
 }
 
 func (r *DescribeDCDBSaleInfoResponse) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *DescribeDCDBSaleInfoResponse) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type DescribeDCDBUpgradePriceRequest struct {
 	*tchttp.BaseRequest
 	// 待升级的实例ID。形如：dcdbt-ow728lmc，可以通过 DescribeDCDBInstances 查询实例详情获得。
 	InstanceId *string `json:"InstanceId" name:"InstanceId"`
-	// 升级类型，取值范围: 
-	// <li> ADD: 新增分片 </li> 
-	//  <li> EXPAND: 升级实例中的已有分片 </li> 
+	// 升级类型，取值范围:
+	// <li> ADD: 新增分片 </li>
+	//  <li> EXPAND: 升级实例中的已有分片 </li>
 	//  <li> SPLIT: 将已有分片中的数据切分到新增分片上</li>
 	UpgradeType *string `json:"UpgradeType" name:"UpgradeType"`
 	// 新增分片配置，当UpgradeType为ADD时生效。
@@ -382,12 +382,12 @@ type DescribeDCDBUpgradePriceRequest struct {
 }
 
 func (r *DescribeDCDBUpgradePriceRequest) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *DescribeDCDBUpgradePriceRequest) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type DescribeDCDBUpgradePriceResponse struct {
@@ -403,12 +403,12 @@ type DescribeDCDBUpgradePriceResponse struct {
 }
 
 func (r *DescribeDCDBUpgradePriceResponse) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *DescribeDCDBUpgradePriceResponse) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type DescribeOrdersRequest struct {
@@ -418,12 +418,12 @@ type DescribeOrdersRequest struct {
 }
 
 func (r *DescribeOrdersRequest) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *DescribeOrdersRequest) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type DescribeOrdersResponse struct {
@@ -439,12 +439,12 @@ type DescribeOrdersResponse struct {
 }
 
 func (r *DescribeOrdersResponse) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *DescribeOrdersResponse) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type DescribeShardSpecRequest struct {
@@ -452,12 +452,12 @@ type DescribeShardSpecRequest struct {
 }
 
 func (r *DescribeShardSpecRequest) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *DescribeShardSpecRequest) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type DescribeShardSpecResponse struct {
@@ -471,12 +471,12 @@ type DescribeShardSpecResponse struct {
 }
 
 func (r *DescribeShardSpecResponse) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *DescribeShardSpecResponse) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type ExpandShardConfig struct {
@@ -514,19 +514,19 @@ type RenewDCDBInstanceRequest struct {
 }
 
 func (r *RenewDCDBInstanceRequest) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *RenewDCDBInstanceRequest) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type RenewDCDBInstanceResponse struct {
 	*tchttp.BaseResponse
 	Response *struct {
 		// 长订单号。可以据此调用 DescribeOrders
-	//  查询订单详细信息，或在支付失败时调用用户账号相关接口进行支付。
+		//  查询订单详细信息，或在支付失败时调用用户账号相关接口进行支付。
 		DealName *string `json:"DealName" name:"DealName"`
 		// 唯一请求ID，每次请求都会返回。定位问题时需要提供该次请求的RequestId。
 		RequestId *string `json:"RequestId" name:"RequestId"`
@@ -534,12 +534,12 @@ type RenewDCDBInstanceResponse struct {
 }
 
 func (r *RenewDCDBInstanceResponse) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *RenewDCDBInstanceResponse) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type ShardInfo struct {
@@ -605,9 +605,9 @@ type UpgradeDCDBInstanceRequest struct {
 	*tchttp.BaseRequest
 	// 待升级的实例ID。形如：dcdbt-ow728lmc，可以通过 DescribeDCDBInstances 查询实例详情获得。
 	InstanceId *string `json:"InstanceId" name:"InstanceId"`
-	// 升级类型，取值范围: 
-	// <li> ADD: 新增分片 </li> 
-	//  <li> EXPAND: 升级实例中的已有分片 </li> 
+	// 升级类型，取值范围:
+	// <li> ADD: 新增分片 </li>
+	//  <li> EXPAND: 升级实例中的已有分片 </li>
 	//  <li> SPLIT: 将已有分片中的数据切分到新增分片上</li>
 	UpgradeType *string `json:"UpgradeType" name:"UpgradeType"`
 	// 新增分片配置，当UpgradeType为ADD时生效。
@@ -623,19 +623,19 @@ type UpgradeDCDBInstanceRequest struct {
 }
 
 func (r *UpgradeDCDBInstanceRequest) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *UpgradeDCDBInstanceRequest) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type UpgradeDCDBInstanceResponse struct {
 	*tchttp.BaseResponse
 	Response *struct {
 		// 长订单号。可以据此调用 DescribeOrders
-	//  查询订单详细信息，或在支付失败时调用用户账号相关接口进行支付。
+		//  查询订单详细信息，或在支付失败时调用用户账号相关接口进行支付。
 		DealName *string `json:"DealName" name:"DealName"`
 		// 唯一请求ID，每次请求都会返回。定位问题时需要提供该次请求的RequestId。
 		RequestId *string `json:"RequestId" name:"RequestId"`
@@ -643,12 +643,12 @@ type UpgradeDCDBInstanceResponse struct {
 }
 
 func (r *UpgradeDCDBInstanceResponse) ToJsonString() string {
-    b, _ := json.Marshal(r)
-    return string(b)
+	b, _ := json.Marshal(r)
+	return string(b)
 }
 
 func (r *UpgradeDCDBInstanceResponse) FromJsonString(s string) error {
-    return json.Unmarshal([]byte(s), &r)
+	return json.Unmarshal([]byte(s), &r)
 }
 
 type ZonesInfo struct {

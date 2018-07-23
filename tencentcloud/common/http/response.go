@@ -3,10 +3,12 @@ package common
 import (
 	"encoding/json"
 	"io/ioutil"
+	"log"
+	"strconv"
 	// "log"
 	"net/http"
 
-	"github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/errors"
+	"tencentcloud-sdk-go/tencentcloud/common/errors"
 )
 
 type Response interface {
@@ -27,9 +29,10 @@ type ErrorResponse struct {
 }
 
 type DeprecatedAPIErrorResponse struct {
-	Code     int    `json:"code"`
-	Message  string `json:"message"`
-	CodeDesc string `json:"codeDesc"`
+	Code      int    `json:"code"`
+	Message   string `json:"message"`
+	CodeDesc  string `json:"codeDesc"`
+	RequestId string `json:"RequestId"`
 }
 
 func (r *BaseResponse) ParseErrorFromHTTPResponse(body []byte) (err error) {
@@ -48,7 +51,7 @@ func (r *BaseResponse) ParseErrorFromHTTPResponse(body []byte) (err error) {
 		return
 	}
 	if deprecated.Code != 0 {
-		return errors.NewTencentCloudSDKError(deprecated.CodeDesc, deprecated.Message, "")
+		return errors.NewTencentCloudSDKError(strconv.Itoa(deprecated.Code), deprecated.Message, deprecated.RequestId)
 	}
 	return nil
 }
@@ -59,11 +62,40 @@ func ParseFromHttpResponse(hr *http.Response, response Response) (err error) {
 	if err != nil {
 		return
 	}
-	//log.Printf("[DEBUG] Response Body=%s", body)
-	err = response.ParseErrorFromHTTPResponse(body)
+	log.Printf("[DEBUG] Response Body=%s", body)
+
+	// 兼容旧版本协议
+	var f interface{}
+	err = json.Unmarshal(body, &f)
 	if err != nil {
 		return
 	}
-	err = json.Unmarshal(body, &response)
+	var obj []byte
+	m := f.(map[string]interface{})
+	if _, ok := m["Response"]; !ok {
+		if m["code"].(float64) != 0 {
+			var b interface{}
+			err = json.Unmarshal(body, &b)
+			n := b.(map[string]interface{})
+
+			err = errors.NewTencentCloudSDKError(strconv.FormatFloat(n["code"].(float64), 'f', -1, 64), n["message"].(string), n["requestId"].(string))
+			if err != nil {
+				return
+			}
+		} else {
+			obj = []byte(`{"Response":` + string(body[:]) + "}")
+		}
+
+	} else {
+		obj = body
+	}
+
+	err = response.ParseErrorFromHTTPResponse(obj)
+	if err != nil {
+		return
+	}
+
+	err = json.Unmarshal(obj, &response)
+
 	return
 }
