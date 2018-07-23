@@ -16,9 +16,10 @@ package v20180720
 
 import (
 	"fmt"
-	"tencentcloud-sdk-go/tencentcloud/common"
-	tchttp "tencentcloud-sdk-go/tencentcloud/common/http"
-	"tencentcloud-sdk-go/tencentcloud/common/profile"
+
+	"github.com/lzkdev/tencentcloud-sdk-go/tencentcloud/common"
+	tchttp "github.com/lzkdev/tencentcloud-sdk-go/tencentcloud/common/http"
+	"github.com/lzkdev/tencentcloud-sdk-go/tencentcloud/common/profile"
 )
 
 const APIVersion = "2018-07-20"

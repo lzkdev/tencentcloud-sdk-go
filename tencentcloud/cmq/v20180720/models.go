@@ -17,7 +17,7 @@ package v20180720
 import (
 	"encoding/json"
 
-	tchttp "tencentcloud-sdk-go/tencentcloud/common/http"
+	tchttp "github.com/lzkdev/tencentcloud-sdk-go/tencentcloud/common/http"
 )
 
 type ReceiveMessageRequest struct {
