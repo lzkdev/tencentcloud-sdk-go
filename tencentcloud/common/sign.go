@@ -9,7 +9,7 @@ import (
 	"sort"
 	"strings"
 
-	tchttp "tencentcloud-sdk-go/tencentcloud/common/http"
+	tchttp "github.com/lzkdev/tencentcloud-sdk-go/tencentcloud/common/http"
 )
 
 const (
