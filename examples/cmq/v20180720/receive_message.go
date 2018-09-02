@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 
 	cmq "github.com/lzkdev/tencentcloud-sdk-go/tencentcloud/cmq/v20180720"
 
@@ -44,8 +44,8 @@ func main() {
 	// 你可以直接查询SDK源码确定DescribeInstancesRequest有哪些属性可以设置，
 	// 属性可能是基本类型，也可能引用了另一个数据结构。
 	// 推荐使用IDE进行开发，可以方便的跳转查阅各个接口和数据结构的文档说明。
-	request := cmq.NewReceiveMessageRequest()
-	request.QueueName = common.StringPtr("queue-test10")
+	// request := cmq.NewReceiveMessageRequest()
+	// request.QueueName = common.StringPtr("queue-test10")
 
 	// 基本类型的设置。
 	// 此接口允许设置返回的实例数量。此处指定为只返回一个。
@@ -74,40 +74,61 @@ func main() {
 	// 	panic(err)
 	// }
 	// 通过client对象调用想要访问的接口，需要传入请求对象
-	response, err := client.ReceiveMessage(request)
+	// response, err := client.ReceiveMessage(request)
 	// 处理异常
-	if val, ok := err.(*errors.TencentCloudSDKError); ok {
-		fmt.Printf("An API error has returned: %s", err)
-		if val.Code == "7000" {
-			fmt.Printf("重试")
-		}
-		return
-	}
-	// 非SDK异常，直接失败。实际代码中可以加入其他的处理。
-	if err != nil {
-		panic(err)
-	}
+	// if val, ok := err.(*errors.TencentCloudSDKError); ok {
+	// 	fmt.Printf("An API error has returned: %s", err)
+	// 	if val.Code == "7000" {
+	// 		fmt.Printf("重试")
+	// 	}
+	// 	return
+	// }
+	// // 非SDK异常，直接失败。实际代码中可以加入其他的处理。
+	// if err != nil {
+	// 	panic(err)
+	// }
 
-	// 打印返回的json字符串
-	fmt.Printf(response.ToJsonString())
+	// // 打印返回的json字符串
+	// fmt.Printf(response.ToJsonString())
 
-	requestDelete := cmq.NewDeleteMessageRequest()
-	requestDelete.QueueName = common.StringPtr("queue-test10")
-	requestDelete.ReceiptHandle = common.StringPtr(*response.Response.ReceiptHandle)
-	responseDelete, err := client.DeleteMessage(requestDelete)
-	// 处理异常
-	if _, ok := err.(*errors.TencentCloudSDKError); ok {
-		fmt.Printf("An API error has returned: %s", err)
-		return
-	}
-	// 非SDK异常，直接失败。实际代码中可以加入其他的处理。
-	if err != nil {
-		panic(err)
-	}
+	// requestDelete := cmq.NewDeleteMessageRequest()
+	// requestDelete.QueueName = common.StringPtr("queue-test10")
+	// requestDelete.ReceiptHandle = common.StringPtr(*response.Response.ReceiptHandle)
+	// responseDelete, err := client.DeleteMessage(requestDelete)
+	// // 处理异常
+	// if _, ok := err.(*errors.TencentCloudSDKError); ok {
+	// 	fmt.Printf("An API error has returned: %s", err)
+	// 	return
+	// }
+	// // 非SDK异常，直接失败。实际代码中可以加入其他的处理。
+	// if err != nil {
+	// 	panic(err)
+	// }
 
-	// 打印返回的json字符串
-	fmt.Printf(responseDelete.ToJsonString())
+	// // 打印返回的json字符串
+	// fmt.Printf(responseDelete.ToJsonString())
 
 	// 发送消息
-
+	body := "2222"
+	requestSend := cmq.NewSendMessageRequest()
+	requestSend.QueueName = common.StringPtr("queue-test10")
+	requestSend.MsgBody = &body
+	responseSend, err := client.SendMessage(requestSend)
+	// 处理异常
+	if val, ok := err.(*errors.TencentCloudSDKError); ok {
+		if val.Code == "7000" {
+			log.Println(err)
+		} else {
+			log.Println("An API error has returned:", err)
+		}
+		// return
+	}
+	// 非SDK异常，直接失败。实际代码中可以加入其他的处理。
+	if err != nil {
+		log.Println("An System error has returned:", err)
+		// return
+	}
+	log.Println("send message", body)
+	// 接收到消息
+	log.Println(responseSend.ToJsonString())
 }

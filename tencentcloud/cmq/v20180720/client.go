@@ -98,7 +98,7 @@ func NewSendMessageRequest() (request *SendMessageRequest) {
 	request = &SendMessageRequest{
 		BaseRequest: &tchttp.BaseRequest{},
 	}
-	request.Init().WithApiInfo("cmq", APIVersion, "ReceiveMessage")
+	request.Init().WithApiInfo("cmq", APIVersion, "SendMessage")
 	return
 }
 
