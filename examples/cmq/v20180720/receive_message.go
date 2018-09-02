@@ -3,11 +3,11 @@ package main
 import (
 	"fmt"
 
-	cmq "tencentcloud-sdk-go/tencentcloud/cmq/v20180720"
+	cmq "github.com/lzkdev/tencentcloud-sdk-go/tencentcloud/cmq/v20180720"
 
-	"tencentcloud-sdk-go/tencentcloud/common"
-	"tencentcloud-sdk-go/tencentcloud/common/errors"
-	"tencentcloud-sdk-go/tencentcloud/common/profile"
+	"github.com/lzkdev/tencentcloud-sdk-go/tencentcloud/common"
+	"github.com/lzkdev/tencentcloud-sdk-go/tencentcloud/common/errors"
+	"github.com/lzkdev/tencentcloud-sdk-go/tencentcloud/common/profile"
 )
 
 func main() {
@@ -107,4 +107,7 @@ func main() {
 
 	// 打印返回的json字符串
 	fmt.Printf(responseDelete.ToJsonString())
+
+	// 发送消息
+
 }

@@ -93,3 +93,29 @@ func (c *Client) DeleteMessage(request *DeleteMessageRequest) (response *DeleteM
 	fmt.Print(response)
 	return
 }
+
+func NewSendMessageRequest() (request *SendMessageRequest) {
+	request = &ReceiveMessageRequest{
+		BaseRequest: &tchttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("cmq", APIVersion, "ReceiveMessage")
+	return
+}
+
+func NewSendMessageResponse() (response *SendMessageResponse) {
+	response = &ReceiveMessageResponse{
+		BaseResponse: &tchttp.BaseResponse{},
+	}
+	return
+}
+
+// 发送消息
+func (c *Client) SendMessage(request *SendMessageRequest) (response *SendMessageResponse, err error) {
+	if request == nil {
+		request = NewReceiveMessageRequest()
+	}
+	response = NewReceiveMessageResponse()
+	err = c.Send(request, response)
+	fmt.Print(response)
+	return
+}

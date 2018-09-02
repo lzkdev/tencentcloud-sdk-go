@@ -111,3 +111,45 @@ func (r *DeleteMessageResponse) ToJsonString() string {
 func (r *DeleteMessageResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), &r)
 }
+
+type SendMessageRequest struct {
+	*tchttp.BaseRequest
+	// 队列名字
+	QueueName *string `json:"queueName" name:"queueName"`
+	// 消息正文。至少 1 Byte，最大长度受限于设置的队列消息最大长度属性
+	MsgBody *string `json:"msgBody" name:"msgBody"`
+	// 单位为秒，表示该消息发送到队列后，需要延时多久用户才可见该消息。
+	DelaySeconds int `json:"delaySeconds" name:"delaySeconds"`
+}
+
+func (r *SendMessageRequest) ToJsonString() string {
+	b, _ := json.Marshal(r)
+	return string(b)
+}
+
+func (r *SendMessageRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &r)
+}
+
+type SendMessageResponse struct {
+	*tchttp.BaseResponse
+	Response *struct {
+		// 0：表示成功，others：错误
+		Code *int `json:"code" name:"code"`
+		// 错误提示信息
+		Message *string `json:"message" name:"message"`
+		// 唯一请求ID，每次请求都会返回。定位问题时需要提供该次请求的RequestId。
+		RequestId *string `json:"requestId" name:"requestId"`
+		// 本次消费的消息唯一标识 Id
+		MsgId *string `json:"msgId" name:"msgId" omitempty`
+	} `json:"Response"`
+}
+
+func (r *SendMessageResponse) ToJsonString() string {
+	b, _ := json.Marshal(r)
+	return string(b)
+}
+
+func (r *SendMessageResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &r)
+}
