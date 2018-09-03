@@ -32,7 +32,7 @@ func main() {
 	// cpf.HttpProfile.ReqTimeout = 10
 	// SDK会自动指定域名。通常是不需要特地指定域名的，但是如果你访问的是金融区的服务，
 	// 则必须手动指定域名，例如云服务器的上海金融区域名： cvm.ap-shanghai-fsi.tencentcloudapi.com
-	cpf.HttpProfile.Endpoint = "cmq-queue-gz.api.qcloud.com/v2/index.php"
+	cpf.HttpProfile.Endpoint = "cmq-topic-gz.api.qcloud.com/v2/index.php"
 	// SDK默认用HmacSHA256进行签名，它更安全但是会轻微降低性能。
 	// 非必要请不要修改这个字段。
 	// cpf.SignMethod = "HmacSHA1"
@@ -108,12 +108,59 @@ func main() {
 	// // 打印返回的json字符串
 	// fmt.Printf(responseDelete.ToJsonString())
 
+	// // 发送消息
+	// body := "2222"
+	// requestSend := cmq.NewSendMessageRequest()
+	// requestSend.QueueName = common.StringPtr("queue-test10")
+	// requestSend.MsgBody = &body
+	// responseSend, err := client.SendMessage(requestSend)
+	// // 处理异常
+	// if val, ok := err.(*errors.TencentCloudSDKError); ok {
+	// 	if val.Code == "7000" {
+	// 		log.Println(err)
+	// 	} else {
+	// 		log.Println("An API error has returned:", err)
+	// 	}
+	// 	// return
+	// }
+	// // 非SDK异常，直接失败。实际代码中可以加入其他的处理。
+	// if err != nil {
+	// 	log.Println("An System error has returned:", err)
+	// 	// return
+	// }
+	// log.Println("send message", body)
+	// // 接收到消息
+	// log.Println(responseSend.ToJsonString())
+
 	// 发送消息
+	// body := "2222"
+	// requestSend := cmq.NewSendMessageRequest()
+	// requestSend.QueueName = common.StringPtr("queue-test10")
+	// requestSend.MsgBody = &body
+	// responseSend, err := client.SendMessage(requestSend)
+	// // 处理异常
+	// if val, ok := err.(*errors.TencentCloudSDKError); ok {
+	// 	if val.Code == "7000" {
+	// 		log.Println(err)
+	// 	} else {
+	// 		log.Println("An API error has returned:", err)
+	// 	}
+	// 	// return
+	// }
+	// // 非SDK异常，直接失败。实际代码中可以加入其他的处理。
+	// if err != nil {
+	// 	log.Println("An System error has returned:", err)
+	// 	// return
+	// }
+	// log.Println("send message", body)
+	// // 接收到消息
+	// log.Println(responseSend.ToJsonString())
+
 	body := "2222"
-	requestSend := cmq.NewSendMessageRequest()
-	requestSend.QueueName = common.StringPtr("queue-test10")
+	requestSend := cmq.NewPublishMessageRequest()
+	requestSend.TopicName = common.StringPtr("detection-topic")
 	requestSend.MsgBody = &body
-	responseSend, err := client.SendMessage(requestSend)
+	responseSend, err := client.PublishMessage(requestSend)
 	// 处理异常
 	if val, ok := err.(*errors.TencentCloudSDKError); ok {
 		if val.Code == "7000" {

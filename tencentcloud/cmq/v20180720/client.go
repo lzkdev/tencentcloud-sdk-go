@@ -119,3 +119,29 @@ func (c *Client) SendMessage(request *SendMessageRequest) (response *SendMessage
 	fmt.Print(response)
 	return
 }
+
+func NewPublishMessageRequest() (request *PublishMessageRequest) {
+	request = &PublishMessageRequest{
+		BaseRequest: &tchttp.BaseRequest{},
+	}
+	request.Init().WithApiInfo("cmq", APIVersion, "PublishMessage")
+	return
+}
+
+func NewPublishMessageResponse() (response *PublishMessageResponse) {
+	response = &PublishMessageResponse{
+		BaseResponse: &tchttp.BaseResponse{},
+	}
+	return
+}
+
+// 发布消息
+func (c *Client) PublishMessage(request *PublishMessageRequest) (response *PublishMessageResponse, err error) {
+	if request == nil {
+		request = NewPublishMessageRequest()
+	}
+	response = NewPublishMessageResponse()
+	err = c.Send(request, response)
+	fmt.Print(response)
+	return
+}

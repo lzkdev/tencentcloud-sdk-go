@@ -153,3 +153,47 @@ func (r *SendMessageResponse) ToJsonString() string {
 func (r *SendMessageResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), &r)
 }
+
+type PublishMessageRequest struct {
+	*tchttp.BaseRequest
+	// 主题名字
+	TopicName *string `json:"主题名字" name:"主题名字"`
+	// 消息正文。至少 1 Byte，最大长度受限于设置的队列消息最大长度属性
+	MsgBody *string `json:"msgBody" name:"msgBody"`
+	// 消息过滤标签
+	MsgTag *string `json:"msgTag.n" name:"msgTag.n"`
+	// 长度<=64字节，该字段用于表示发送消息的路由路径
+	RoutingKey *string `json:"routingKey" name:"routingKey"`
+}
+
+func (r *PublishMessageRequest) ToJsonString() string {
+	b, _ := json.Marshal(r)
+	return string(b)
+}
+
+func (r *PublishMessageRequest) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &r)
+}
+
+type PublishMessageResponse struct {
+	*tchttp.BaseResponse
+	Response *struct {
+		// 0：表示成功，others：错误
+		Code *int `json:"code" name:"code"`
+		// 错误提示信息
+		Message *string `json:"message" name:"message"`
+		// 唯一请求ID，每次请求都会返回。定位问题时需要提供该次请求的RequestId。
+		RequestId *string `json:"requestId" name:"requestId"`
+		// 本次消费的消息唯一标识 Id
+		MsgId *string `json:"msgId" name:"msgId" omitempty`
+	} `json:"Response"`
+}
+
+func (r *PublishMessageResponse) ToJsonString() string {
+	b, _ := json.Marshal(r)
+	return string(b)
+}
+
+func (r *PublishMessageResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &r)
+}
