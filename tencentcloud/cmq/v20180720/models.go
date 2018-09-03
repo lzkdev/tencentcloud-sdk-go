@@ -157,7 +157,7 @@ func (r *SendMessageResponse) FromJsonString(s string) error {
 type PublishMessageRequest struct {
 	*tchttp.BaseRequest
 	// 主题名字
-	TopicName *string `json:"主题名字" name:"主题名字"`
+	TopicName *string `json:"topicName" name:"topicName"`
 	// 消息正文。至少 1 Byte，最大长度受限于设置的队列消息最大长度属性
 	MsgBody *string `json:"msgBody" name:"msgBody"`
 	// 消息过滤标签
