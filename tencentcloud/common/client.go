@@ -1,6 +1,7 @@
 package common
 
 import (
+	"detection-golang/business/z"
 	"log"
 	"net/http"
 	"time"
@@ -28,26 +29,33 @@ func (c *Client) Send(request tchttp.Request, response tchttp.Response) (err err
 	}
 	err = tchttp.ConstructParams(request)
 	if err != nil {
+		z.Log.InfoWithKey("ConstructParams error", err)
 		return
 	}
 	tchttp.CompleteCommonParams(request, c.GetRegion())
 	err = signRequest(request, c.credential, c.signMethod)
 	if err != nil {
+		z.Log.InfoWithKey("signRequest error", err)
 		return
 	}
 	httpRequest, err := http.NewRequest(request.GetHttpMethod(), request.GetUrl(), request.GetBodyReader())
 	if err != nil {
+		z.Log.InfoWithKey("NewRequest error", err)
 		return
 	}
 	if request.GetHttpMethod() == "POST" {
 		httpRequest.Header["Content-Type"] = []string{"application/x-www-form-urlencoded"}
 	}
-	//log.Printf("[DEBUG] http request=%v", httpRequest)
+	log.Printf("[DEBUG] http request=%v", httpRequest.URL.RawQuery)
 	httpResponse, err := c.httpClient.Do(httpRequest)
 	if err != nil {
+		z.Log.InfoWithKey("Do error", err)
 		return err
 	}
 	err = tchttp.ParseFromHttpResponse(httpResponse, response)
+	z.Log.InfoWithKey("ParseFromHttpResponse error", err)
+	z.Log.InfoWithKey("httpRequest:", httpRequest)
+	z.Log.InfoWithKey("httpResponse:", httpResponse)
 	return
 }
 
